@@ -1,0 +1,522 @@
+/* ------------------------------------------------------------------------
+   Sign-in screens, account bar, guest indicator and boot screen.
+   Uses the same tokens as the rest of JaalBreak (tokens.css).
+   ------------------------------------------------------------------------ */
+
+/* Boot screen (restoring session) ----------------------------------------- */
+.boot-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-4);
+  color: var(--slate);
+  font-size: var(--text-sm);
+}
+
+.boot-screen p {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+/* Two-column auth layout ---------------------------------------------------- */
+.auth {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(360px, 44%) 1fr;
+  background: var(--warm-white);
+}
+
+.auth__brand {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--s-10);
+  padding: var(--s-10) clamp(var(--s-8), 5vw, var(--s-16));
+  background: var(--navy);
+  color: #c9d3de;
+  overflow: hidden;
+}
+
+/* A faint shield outline as texture — decorative only. */
+.auth__brand::after {
+  content: '';
+  position: absolute;
+  right: -120px;
+  bottom: -90px;
+  width: 420px;
+  height: 480px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 46% 46% 50% 50% / 30% 30% 70% 70%;
+  pointer-events: none;
+}
+
+.auth__pitch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  max-width: 34rem;
+  position: relative;
+  z-index: 1;
+}
+
+.auth__headline {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(2rem, 3.4vw, var(--text-3xl));
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--white);
+}
+
+.auth__headline span {
+  color: #7fc8c1;
+}
+
+.auth__lede {
+  font-size: var(--text-md);
+  line-height: 1.6;
+  color: #b7c3d0;
+  max-width: 44ch;
+}
+
+.auth__points {
+  list-style: none;
+  margin: var(--s-4) 0 0;
+  padding: var(--s-5) 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.auth__points li {
+  display: flex;
+  gap: var(--s-3);
+  align-items: flex-start;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: #c9d3de;
+}
+
+.auth__points svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: #7fc8c1;
+}
+
+.auth__fine {
+  font-size: var(--text-xs);
+  color: #74859a;
+  max-width: 48ch;
+  position: relative;
+  z-index: 1;
+}
+
+.auth__main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-12) var(--s-6);
+  outline: none;
+}
+
+.auth__card {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  animation: auth-in 0.28s ease-out;
+}
+
+@keyframes auth-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.auth__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.auth__title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--text-xl);
+  line-height: 1.2;
+  color: var(--navy);
+  outline: none;
+}
+
+.auth__intro {
+  font-size: var(--text-sm);
+  color: var(--slate);
+  line-height: 1.55;
+}
+
+.auth__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.auth__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.auth__fields:disabled .input {
+  background: var(--slate-soft);
+}
+
+.auth-field .input {
+  min-height: 44px;
+}
+
+.auth-field .input[aria-invalid='true'] {
+  border-color: var(--red);
+}
+
+.auth-field .field-error {
+  font-size: var(--text-xs);
+}
+
+.auth__row-end {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: calc(-1 * var(--s-2));
+}
+
+.auth-inline-btn {
+  min-height: 0;
+  padding: 0;
+  font-size: var(--text-sm);
+}
+
+.auth-submit {
+  min-height: 46px;
+}
+
+.auth__switch {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--slate);
+}
+
+.auth__consent {
+  margin-top: calc(-1 * var(--s-1));
+}
+
+.auth-alert p + .btn,
+.auth-alert p + button {
+  margin-top: var(--s-2);
+}
+
+.auth__mail {
+  display: flex;
+  gap: var(--s-3);
+  align-items: flex-start;
+  padding: var(--s-4);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+.auth__mail svg {
+  flex-shrink: 0;
+  color: var(--teal);
+  margin-top: 2px;
+}
+
+/* Password input with show/hide ------------------------------------------- */
+.password-input {
+  position: relative;
+}
+
+.password-input .input {
+  padding-right: 46px;
+}
+
+.password-input__toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  color: var(--slate);
+  border-radius: var(--radius);
+}
+
+.password-input__toggle:hover {
+  color: var(--navy);
+}
+
+.password-input__toggle:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: -4px;
+}
+
+.password-rules {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-4);
+  font-size: var(--text-xs);
+  color: var(--slate-2);
+}
+
+.password-rules li {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s;
+}
+
+.password-rules li svg {
+  opacity: 0.35;
+}
+
+.password-rules li.is-met {
+  color: var(--teal);
+}
+
+.password-rules li.is-met svg {
+  opacity: 1;
+}
+
+/* Guest option ------------------------------------------------------------- */
+.auth__guest {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.auth__divider {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  color: var(--slate-2);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.auth__divider::before,
+.auth__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.auth__guest-btn {
+  min-height: 46px;
+}
+
+.auth__guest-note {
+  text-align: center;
+}
+
+/* Account bar (top of every app page) -------------------------------------- */
+.account-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3) var(--s-4);
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--s-3) var(--s-10);
+  border-bottom: 1px solid var(--border);
+  font-size: var(--text-sm);
+}
+
+.account-bar__who {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.account-bar__actions {
+  display: flex;
+  gap: var(--s-2);
+  flex-shrink: 0;
+}
+
+.account-bar__note {
+  color: var(--slate);
+  font-size: var(--text-xs);
+}
+
+.account-bar__greeting {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  min-width: 0;
+}
+
+.account-bar__greeting strong {
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.account-bar__email {
+  font-size: var(--text-xs);
+  color: var(--slate);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 28ch;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--font-serif);
+  font-size: var(--text-sm);
+  flex-shrink: 0;
+}
+
+.mode-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--charcoal);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.sync-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--text-xs);
+  color: var(--teal);
+}
+
+.sync-status--warn {
+  color: var(--amber);
+}
+
+.account-bar__alert {
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-2) var(--s-3);
+  background: var(--amber-soft);
+  border-left: 3px solid var(--amber);
+  color: #6b4610;
+  font-size: var(--text-xs);
+}
+
+.account-bar__alert span {
+  flex: 1;
+}
+
+.account-bar__alert .icon-button {
+  width: 28px;
+  height: 28px;
+}
+
+.import-local > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+
+.import-local .button-row {
+  margin-top: var(--s-1);
+}
+
+/* Responsive ----------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .auth {
+    grid-template-columns: 1fr;
+  }
+
+  .auth__brand {
+    padding: var(--s-6) var(--s-4) var(--s-6);
+    gap: var(--s-4);
+  }
+
+  .auth__brand::after,
+  .auth__points,
+  .auth__fine {
+    display: none;
+  }
+
+  .auth__headline {
+    font-size: var(--text-xl);
+  }
+
+  .auth__lede {
+    font-size: var(--text-sm);
+  }
+
+  .auth__pitch {
+    gap: var(--s-2);
+  }
+
+  .auth__main {
+    align-items: flex-start;
+    padding: var(--s-8) var(--s-4) var(--s-12);
+  }
+
+  .account-bar {
+    padding: var(--s-3) var(--s-4);
+  }
+}
+
+@media (max-width: 520px) {
+  .account-bar__note {
+    flex-basis: 100%;
+  }
+
+  .account-bar__actions {
+    width: 100%;
+  }
+
+  .account-bar__actions .btn {
+    flex: 1;
+  }
+}

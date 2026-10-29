@@ -1,0 +1,15 @@
+node_modules
+dist
+.DS_Store
+*.log
+
+# Environment files (may contain project keys) — never commit these.
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+!.env.example
+
+# Vercel CLI
+.vercel

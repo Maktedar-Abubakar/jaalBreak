@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "JaalBreak — scam check",
+  "version": "1.2.0",
+  "description": "Select any text, right-click, and check it for scam tricks. Runs on your computer — nothing is sent anywhere.",
+  "permissions": ["contextMenus", "storage"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_title": "JaalBreak — check a message", "default_popup": "check.html" },
+  "icons": { "128": "icon-128.png" }
+}
